@@ -65,7 +65,7 @@ if ($error) {
       <table class="table">
         <thead>
           <tr>
-			<th>ID</th>
+            <th>ID</th>
             <th>Empleado</th>
             <th>Fecha</th>
             <th>Motivo</th>
@@ -77,7 +77,7 @@ if ($error) {
             foreach ($permisos as $fila) {
           ?>
               <tr>
-				<td><?php echo escapar($fila["ID"]); ?></td>
+                <td><?php echo escapar($fila["ID"]); ?></td>
                 <td><?php echo escapar($fila["CODIGO_EMPLEADO"]); ?></td>
                 <td><?php echo escapar($fila["FECHA"]); ?></td>
                 <td><?php echo escapar($fila["MOTIVO"]); ?></td>

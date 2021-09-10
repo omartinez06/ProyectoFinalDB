@@ -18,6 +18,10 @@
       <a href="permisos.php" class="btn btn-primary mt-4">Permisos</a>
       <hr>
     </div>
+    <div class="col-md-12">
+      <a href="marcaje.php" class="btn btn-primary mt-4">Marcaje</a>
+      <hr>
+    </div>
   </div>
 </div>
 

@@ -21,14 +21,13 @@ if (isset($_POST['submit'])) {
       "codigo" => $_POST['codigo'],
       "nombre" => $_POST['nombre'],
       "jornada" => $_POST['jornada'],
-      "departamento" => $_POST['departamento'],      
+      "departamento" => $_POST['departamento'],
     ];
 
     $consultaSQL = "INSERT INTO empleado (codigo, nombre, codigo_jordana, codigo_departamento) values (:" . implode(", :", array_keys($empleado)) . ")";
 
     $sentencia = $conexion->prepare($consultaSQL);
     $sentencia->execute($empleado);
-	
   } catch (PDOException $error) {
     $resultado['error'] = true;
     $resultado['mensaje'] = $error->getMessage();
@@ -38,19 +37,16 @@ try {
   $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
   $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
-    $consultaJornadaSQL = "SELECT * FROM jornada";
-	$sentenciaJornada = $conexion->prepare($consultaJornadaSQL);
-	$sentenciaJornada->execute();
-	$jornadas = $sentenciaJornada->fetchAll();
-	
-	
-    $consultaDeptoSQL = "SELECT * FROM departamento";
-    $sentenciaDepto = $conexion->prepare($consultaDeptoSQL);
-    $sentenciaDepto->execute();
-    $departamentos = $sentenciaDepto->fetchAll();
-	
-	
-	
+  $consultaJornadaSQL = "SELECT * FROM jornada";
+  $sentenciaJornada = $conexion->prepare($consultaJornadaSQL);
+  $sentenciaJornada->execute();
+  $jornadas = $sentenciaJornada->fetchAll();
+
+
+  $consultaDeptoSQL = "SELECT * FROM departamento";
+  $sentenciaDepto = $conexion->prepare($consultaDeptoSQL);
+  $sentenciaDepto->execute();
+  $departamentos = $sentenciaDepto->fetchAll();
 } catch (PDOException $error) {
   $error = $error->getMessage();
 }
@@ -89,44 +85,44 @@ if (isset($resultado)) {
           <label for="nombre">Nombre</label>
           <input type="text" name="nombre" id="nombre" class="form-control">
         </div>
-		
-		
-		<div class="form-group">
-			<label for="jornada">Jornada</label>
-			<select class="form-select" aria-label="Jornada" id="jornada" name="jornada">
-		
-		<?php
-          if ($jornadas && $sentenciaJornada->rowCount() > 0) {
-            foreach ($jornadas as $fila) {
-          ?>
-			<option value=<?php echo escapar($fila["CODIGO"]); ?>><?php echo escapar($fila["NOMBRE"]); ?></option>
-          <?php
+
+
+        <div class="form-group">
+          <label for="jornada">Jornada</label>
+          <select class="form-select" aria-label="Jornada" id="jornada" name="jornada">
+
+            <?php
+            if ($jornadas && $sentenciaJornada->rowCount() > 0) {
+              foreach ($jornadas as $fila) {
+            ?>
+                <option value=<?php echo escapar($fila["CODIGO"]); ?>><?php echo escapar($fila["NOMBRE"]); ?></option>
+            <?php
+              }
             }
-          }
-          ?>
-		 
-				
-            </select>
+            ?>
+
+
+          </select>
         </div>
-		
-		<div class="form-group">
-			<label for="departamento">Departamento</label>
-			<select class="form-select" aria-label="Departamento" id="departamento" name="departamento">
-		
-		<?php
-          if ($departamentos && $sentenciaDepto->rowCount() > 0) {
-            foreach ($departamentos as $fila) {
-          ?>
-			<option value=<?php echo escapar($fila["CODIGO"]); ?>><?php echo escapar($fila["NOMBRE"]); ?></option>
-          <?php
+
+        <div class="form-group">
+          <label for="departamento">Departamento</label>
+          <select class="form-select" aria-label="Departamento" id="departamento" name="departamento">
+
+            <?php
+            if ($departamentos && $sentenciaDepto->rowCount() > 0) {
+              foreach ($departamentos as $fila) {
+            ?>
+                <option value=<?php echo escapar($fila["CODIGO"]); ?>><?php echo escapar($fila["NOMBRE"]); ?></option>
+            <?php
+              }
             }
-          }
-          ?>
-		 
-				
-            </select>
+            ?>
+
+
+          </select>
         </div>
-		
+
         <div class="form-group">
           <input type="submit" name="submit" class="btn btn-primary" value="Crear">
           <a class="btn btn-primary" href="empleados.php">Regresar</a>

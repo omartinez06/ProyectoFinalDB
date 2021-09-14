@@ -22,6 +22,10 @@
       <a href="marcaje.php" class="btn btn-primary mt-4">Marcaje</a>
       <hr>
     </div>
+    <div class="col-md-12">
+      <a href="reporte.php" class="btn btn-primary mt-4">Reporte</a>
+      <hr>
+    </div>
   </div>
 </div>
 
